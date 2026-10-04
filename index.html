@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ahmad | Developer</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #070b14;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* الخلفية */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #0066ff;
+            filter: blur(180px);
+            opacity: 0.15;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #8a2be2;
+            filter: blur(180px);
+            opacity: 0.12;
+            bottom: -150px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        /* القائمة */
+
+        nav {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+
+            backdrop-filter: blur(15px);
+
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00aaff;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00aaff;
+        }
+
+        /* الصفحة الرئيسية */
+
+        .hero {
+            min-height: 85vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 30px;
+        }
+
+        .badge {
+            padding: 8px 18px;
+            border: 1px solid #008cff;
+            border-radius: 50px;
+            color: #00aaff;
+            margin-bottom: 25px;
+            background: rgba(0,140,255,0.08);
+        }
+
+        h1 {
+            font-size: clamp(45px, 10vw, 90px);
+            margin-bottom: 15px;
+
+            background: linear-gradient(90deg, #ffffff, #00aaff);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* الأزرار */
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 14px 25px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #008cff;
+            color: white;
+            box-shadow: 0 0 25px rgba(0,140,255,0.4);
+        }
+
+        .secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+        }
+
+        /* الأقسام */
+
+        section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 100px auto;
+        }
+
+        .title {
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        .title span {
+            color: #00aaff;
+        }
+
+        /* المهارات */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(200px, 1fr)
+            );
+
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #008cff;
+            box-shadow: 0 10px 40px rgba(0,140,255,0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #00aaff;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* المشاريع */
+
+        .projects {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .project {
+            overflow: hidden;
+            border-radius: 20px;
+            background: #0d1320;
+            border: 1px solid #202838;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: scale(1.03);
+        }
+
+        .project-img {
+            height: 170px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0066ff,
+                    #681cff
+                );
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* الإحصائيات */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            text-align: center;
+        }
+
+        .stat {
+            padding: 30px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 40px;
+            color: #00aaff;
+        }
+
+        .stat span {
+            color: #888;
+        }
+
+        /* أسفل الموقع */
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #777;
+            border-top: 1px solid #202838;
+        }
+
+        /* الجوال */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                margin: 70px auto;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- القائمة -->
+
+    <nav>
+
+        <div class="logo">
+            Ahmad<span>.dev</span>
+        </div>
+
+        <div>
+
+            <a href="#home">
+                الرئيسية
+            </a>
+
+            <a href="#skills">
+                مهاراتي
+            </a>
+
+            <a href="#projects">
+                مشاريعي
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- الصفحة الرئيسية -->
+
+    <div class="hero" id="home">
+
+        <div class="badge">
+            ⚡ Beginner Developer
+        </div>
+
+        <h1>
+            أحمد
+        </h1>
+
+        <p>
+            أهلاً بك في موقعي الشخصي.
+            أنا أتعلم البرمجة وأبني مشاريعي
+            خطوة بخطوة باستخدام
+            HTML و CSS و JavaScript.
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="showMessage()">
+
+                🚀 استكشف موقعي
+
+            </button>
+
+
+            <button
+                class="secondary"
+                onclick="scrollToProjects()">
+
+                💻 مشاريعي
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- المهارات -->
+
+    <section id="skills">
+
+        <h2 class="title">
+
+            مهاراتي
+            <span>// Skills</span>
+
+        </h2>
+
+
+        <div class="skills">
+
+            <div class="card">
+
+                <h3>
+                    HTML
+                </h3>
+
+                <p>
+                    بناء هيكل صفحات الويب
+                    وتنظيم المحتوى والعناصر.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    CSS
+                </h3>
+
+                <p>
+                    تصميم المواقع وإضافة الألوان
+                    والتنسيقات والحركات.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    JavaScript
+                </h3>
+
+                <p>
+                    إضافة التفاعل والوظائف
+                    الديناميكية للموقع.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- الإحصائيات -->
+
+    <section>
+
+        <h2 class="title">
+
+            تقدمي
+            <span>// Progress</span>
+
+        </h2>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>
+                    01
+                </strong>
+
+                <span>
+                    موقع بنيته
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    03
+                </strong>
+
+                <span>
+                    تقنيات أتعلمها
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    ∞
+                </strong>
+
+                <span>
+                    طموح
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- المشاريع -->
+
+    <section id="projects">
+
+        <h2 class="title">
+
+            مشاريعي
+            <span>// Projects</span>
+
+        </h2>
+
+
+        <div class="projects">
+
+
+            <div class="project">
+
+                <div class="project-img">
+                    🌐
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        موقعي الأول
+                    </h3>
+
+                    <p>
+                        أول مشروع لي باستخدام
+                        HTML و CSS.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-img">
+                    💻
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        مشروع قادم
+                    </h3>
+
+                    <p>
+                        مشروع جديد قيد التطوير...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-img">
+                    🚀
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Future Project
+                    </h3>
+
+                    <p>
+                        القادم أقوى بكثير.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- الفوتر -->
+
+    <footer>
+
+        © 2026 Ahmad.dev
+        — Built with ❤️ & Code
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function showMessage() {
+
+            alert(
+                "🔥 أهلاً بك في عالم أحمد البرمجي!"
+            );
+
+        }
+
+
+        function scrollToProjects() {
+
+            document
+                .getElementById("projects")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+    </script>
+
+</body>
+
+</html>      
